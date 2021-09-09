@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import DraggableVertice from "./DraggableVertice.js";
 
@@ -12,11 +12,38 @@ const EditBox = styled.div`
     position: relative;
 `;
 
-const ShapeEditor = () => {
+const ShapeEditor = ({verticePoints, handleDrag}) => {
+
+    const [vertices, setVertices] = useState([]);
+
+    useEffect(() => {
+        const array = [];
+
+        for (let i = 0; i < verticePoints.length; i++) {
+            
+            if (verticePoints[i] === undefined) {
+                return;
+            }
+
+            array.push(
+                <DraggableVertice 
+                    key={1000 + i}
+                    x={verticePoints[i].x}
+                    y={verticePoints[i].y}
+                    number={i}
+                    handleDrag = {handleDrag}
+                />
+            );
+        }
+
+        setVertices(array);
+
+    }, [verticePoints]);
+
     return (
         <>
             <EditBox>
-                <DraggableVertice />
+                {vertices}
             </EditBox>
         </>
     );

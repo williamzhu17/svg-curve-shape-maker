@@ -14,12 +14,19 @@ const CircleVertice = styled.div`
   position: absolute;
 `;
 
-const DraggableVertice = () => {
+const DraggableVertice = ({x, y, number, handleDrag}) => {
+
+    const onDrag = (e, data) => {
+        handleDrag(e, data, number);
+    }
+
     return (
         <>
             <Draggable
                 bounds="parent"
                 handle=".handle"
+                position={{x: x, y: y}}
+                onDrag={(e, data) => onDrag(e, data)}
             >
                 <CircleVertice className="handle" />
             </Draggable>
