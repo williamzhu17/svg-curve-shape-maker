@@ -36,12 +36,34 @@ const App = () => {
         setVerticePoints(newVerticePoints);
     }
 
+    const addVertice = (event) => {
+        let newVerticePoints = [];
+
+        for (let i = 0; i < verticePoints.length; i++) {
+            newVerticePoints.push(
+                {
+                    "x": verticePoints[i].x, 
+                    "y": verticePoints[i].y,
+                }
+            );
+        }
+
+        newVerticePoints.push(
+            {
+                "x": event.nativeEvent.offsetX, 
+                "y": event.nativeEvent.offsetY,
+            }
+        );
+        
+        setVerticePoints(newVerticePoints);
+    }
+
     return (
         <>
             <Container fluid>
                 <Row>
                     <Col>
-                        <ShapeEditor verticePoints={verticePoints} handleDrag={handleDrag} />
+                        <ShapeEditor verticePoints={verticePoints} handleDrag={handleDrag} addVertice={addVertice} />
                     </Col>
                     <Col>
                         <Sidebar verticePoints={verticePoints} />

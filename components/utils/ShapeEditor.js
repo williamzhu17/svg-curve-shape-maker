@@ -12,7 +12,7 @@ const EditBox = styled.div`
     position: relative;
 `;
 
-const ShapeEditor = ({verticePoints, handleDrag}) => {
+const ShapeEditor = ({verticePoints, handleDrag, addVertice}) => {
 
     const [vertices, setVertices] = useState([]);
 
@@ -42,7 +42,7 @@ const ShapeEditor = ({verticePoints, handleDrag}) => {
 
     return (
         <>
-            <EditBox>
+            <EditBox onClick={(e) => addVertice(e)}>
                 {vertices}
             </EditBox>
         </>
