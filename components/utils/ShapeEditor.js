@@ -42,7 +42,7 @@ const ShapeEditor = ({verticePoints, handleDrag, addVertice}) => {
 
     return (
         <>
-            <EditBox onClick={(e) => addVertice(e)}>
+            <EditBox id="editBox" onClick={(e) => addVertice(e)}>
                 {vertices}
             </EditBox>
         </>

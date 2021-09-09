@@ -37,25 +37,27 @@ const App = () => {
     }
 
     const addVertice = (event) => {
-        let newVerticePoints = [];
+        if (event.target.id === "editBox") {
+            let newVerticePoints = [];
 
-        for (let i = 0; i < verticePoints.length; i++) {
+            for (let i = 0; i < verticePoints.length; i++) {
+                newVerticePoints.push(
+                    {
+                        "x": verticePoints[i].x, 
+                        "y": verticePoints[i].y,
+                    }
+                );
+            }
+    
             newVerticePoints.push(
                 {
-                    "x": verticePoints[i].x, 
-                    "y": verticePoints[i].y,
+                    "x": event.nativeEvent.offsetX, 
+                    "y": event.nativeEvent.offsetY,
                 }
             );
+    
+            setVerticePoints(newVerticePoints);
         }
-
-        newVerticePoints.push(
-            {
-                "x": event.nativeEvent.offsetX, 
-                "y": event.nativeEvent.offsetY,
-            }
-        );
-        
-        setVerticePoints(newVerticePoints);
     }
 
     return (
